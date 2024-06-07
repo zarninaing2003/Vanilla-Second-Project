@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .loading {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background: #fff;
+        z-index: 22;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .loader {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: inline-block;
+        position: relative;
+        border: 3px solid;
+        border-color: #49de80 #49de80 transparent transparent;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+      }
+      .loader::after,
+      .loader::before {
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        border: 3px solid;
+        border-color: transparent transparent #ff3d00 #ff3d00;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        animation: rotationBack 0.5s linear infinite;
+        transform-origin: center center;
+      }
+      .loader::before {
+        width: 32px;
+        height: 32px;
+        border-color: #49de80 #49de80 transparent transparent;
+        animation: rotation 1.5s linear infinite;
+      }
+
+      @keyframes rotation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes rotationBack {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(-360deg);
+        }
+      }
+    </style>
+
+    <!-- Meta tag -->
+    <!-- Primary Meta Tags -->
+    <title>Vanilla Second Project</title>
+    <meta name="title" content="Vanilla Second Project" />
+    <link rel="icon" href="/assets/logo.png">
+    <meta name="description" content="My Tailwind Second Project." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://github.com/" />
+    <meta property="og:title" content="Vanilla Second Project" />
+    <meta property="og:description" content="My Tailwind Second Project." />
+    <meta
+      property="og:image"
+      content="../assets/facebook-size.png"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://github.com/" />
+    <meta property="twitter:title" content="Vanilla Second Project" />
+    <meta
+      property="twitter:description"
+      content="My Tailwind Second Project."
+    />
+    <meta
+      property="twitter:image"
+      content="../assets/facebook-size.png"
+    />
+
+    <!-- Dark Mode URL Bar -->
+    <meta name="theme-color" content="dark:bg-slate-900">
+
+    <!-- Meta Tags Generated with https://metatags.io -->
+    <!-- Meta tag -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="/dist/output.css" />
+  </head>
+  <body class="dark:bg-slate-700">
+    <!-- Loading -->
+    <div class="loading">
+      <span class="loader"></span>
+    </div>
+
+    <!-- Nav Bar Section -->
+    <section
+      class="bg-green-200 dark:bg-slate-800 nav-control animate__animated z-50"
+    >
+      <div class="container mx-auto flex md:px-5 justify-between items-center">
+        <!-- Logo -->
+        <div class="scale-75 md:scale-100">
+          <svg
+            width="162"
+            height="47"
+            viewBox="0 0 162 47"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M65.344 36L56.032 13.28H61.568L67.616 28.416L73.632 13.28H79.232L69.92 36H65.344ZM85.073 36.352C83.0037 36.352 81.2437 35.5307 79.793 33.888C78.3637 32.2453 77.649 30.2827 77.649 28C77.649 25.7173 78.3637 23.7547 79.793 22.112C81.2437 20.4693 83.0037 19.648 85.073 19.648C86.9077 19.648 88.3583 20.2987 89.425 21.6V20H94.257V36H89.425V34.4C88.3583 35.7013 86.9077 36.352 85.073 36.352ZM83.505 30.848C84.1877 31.5947 85.073 31.968 86.161 31.968C87.249 31.968 88.1237 31.5947 88.785 30.848C89.4677 30.1013 89.809 29.152 89.809 28C89.809 26.848 89.4677 25.8987 88.785 25.152C88.1237 24.4053 87.249 24.032 86.161 24.032C85.073 24.032 84.1877 24.4053 83.505 25.152C82.8437 25.8987 82.513 26.848 82.513 28C82.513 29.152 82.8437 30.1013 83.505 30.848ZM98.234 36V20H103.066V21.632C103.983 20.3093 105.466 19.648 107.514 19.648C109.455 19.648 110.97 20.2987 112.058 21.6C113.167 22.9013 113.722 24.6187 113.722 26.752V36H108.89V27.584C108.89 25.216 108.026 24.032 106.298 24.032C105.338 24.032 104.559 24.384 103.962 25.088C103.365 25.792 103.066 26.8373 103.066 28.224V36H98.234ZM119.884 17.824C119.073 17.824 118.369 17.536 117.772 16.96C117.175 16.3627 116.876 15.648 116.876 14.816C116.876 13.984 117.175 13.28 117.772 12.704C118.369 12.1067 119.073 11.808 119.884 11.808C120.737 11.808 121.452 12.1067 122.028 12.704C122.625 13.28 122.924 13.984 122.924 14.816C122.924 15.648 122.625 16.3627 122.028 16.96C121.452 17.536 120.737 17.824 119.884 17.824ZM117.484 36V20H122.316V36H117.484ZM126.297 36V12H131.129V36H126.297ZM135.109 36V12H139.941V36H135.109ZM150.385 36.352C148.316 36.352 146.556 35.5307 145.106 33.888C143.676 32.2453 142.962 30.2827 142.962 28C142.962 25.7173 143.676 23.7547 145.106 22.112C146.556 20.4693 148.316 19.648 150.385 19.648C152.22 19.648 153.671 20.2987 154.738 21.6V20H159.569V36H154.738V34.4C153.671 35.7013 152.22 36.352 150.385 36.352ZM148.818 30.848C149.5 31.5947 150.386 31.968 151.474 31.968C152.562 31.968 153.436 31.5947 154.098 30.848C154.78 30.1013 155.122 29.152 155.122 28C155.122 26.848 154.78 25.8987 154.098 25.152C153.436 24.4053 152.562 24.032 151.474 24.032C150.386 24.032 149.5 24.4053 148.818 25.152C148.156 25.8987 147.826 26.848 147.826 28C147.826 29.152 148.156 30.1013 148.818 30.848Z"
+              fill="#F1F5F9"
+            />
+            <path
+              d="M41 23.1148C41 33.1427 32.9177 41.2295 23 41.2295C13.0823 41.2295 5 33.1427 5 23.1148C5 13.0868 13.0823 5 23 5C32.9177 5 41 13.0868 41 23.1148Z"
+              stroke="#FDF2F8"
+              stroke-width="10"
+            />
+            <path
+              d="M43.5 35.4426C43.5 40.4566 39.4588 44.5 34.5 44.5C29.5412 44.5 25.5 40.4566 25.5 35.4426C25.5 30.4286 29.5412 26.3853 34.5 26.3853C39.4588 26.3853 43.5 30.4286 43.5 35.4426Z"
+              fill="#FEFEFE"
+              stroke="#61C454"
+              stroke-width="5"
+            />
+          </svg>
+        </div>
+
+        <!-- Menu Text -->
+        <div
+          id="mobileSlide"
+          class="fixed flex justify-center items-center md:static md:h-auto h-screen bg-slate-100 md:bg-transparent top-0 -left-full w-full z-10 duration-500"
+        >
+          <div
+            id="mobile-slide-close"
+            class="absolute top-3 left-3 w-10 h-10 border border-green-500 rounded-full flex justify-center items-center md:hidden"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+          <ul
+            class="md:flex md:space-x-3 space-y-5 md:space-y-0 text-3xl md:text-base"
+          >
+            <li>
+              <a
+                href="#home"
+                class="mobile-slide-close dark:text-red-400 font-serif active-link"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#chat"
+                class="mobile-slide-close dark:text-red-400 font-serif"
+                >Chat</a
+              >
+            </li>
+            <li>
+              <a
+                href="#contact"
+                class="mobile-slide-close dark:text-red-400 font-serif"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a
+                href="#device"
+                class="mobile-slide-close dark:text-red-400 font-serif"
+                >Device</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex items-center justify-center scale-75 md:scale-100">
+          <button
+            id="dark-switch"
+            onclick="toggleTheme()"
+            class="shadow w-[72px] flex items-center transition duration-200 rounded-full m-5 bg-slate-800 p-1"
+          >
+            <div
+              id="dark-switch-icon"
+              class="bg-slate-50 w-8 h-8 rounded-full transform transition duration-200 flex justify-center items-center"
+            >
+              <i class="fa-regular fa-sun"></i>
+            </div>
+            <h6
+              id="dark-text"
+              class="text-slate-200 dark:text-slate-900 translate-x-1"
+            >
+              FF
+            </h6>
+          </button>
+          <div class="md:hidden mobile-menu dark:text-white">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <!-- <h1 id="dark-text-change" class="text-center text-3xl font-bold dark:text-slate-200">Light</h1> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-green-200 dark:bg-slate-800 py-40">
+      <div class="text-center">
+        <h1
+          class="text-4xl mb-5 font-serif font-bold headline dark:text-slate-300"
+        >
+          IMAGINE IN PALACE
+        </h1>
+        <p
+          class="text-slate-900 dark:text-slate-200 font-serif mb-10 max-w-sm md:max-w-xl mx-auto headline"
+        >
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum
+          dolore explicabo facilis at nulla esse impedit distinctio hic
+          inventore accusantium! Voluptates dicta totam incidunt suscipit alias
+          velit voluptate obcaecati odio!
+        </p>
+        <div class="space-x-3">
+          <button
+            class="bg-red-600 px-6 py-3 rounded-full text-white hover:bg-green-600 duration-300 headline"
+          >
+            <i class="fa-solid fa-download"></i>
+            <span>Download Now</span>
+          </button>
+          <button
+            class="bg-slate-900 px-8 py-3 rounded-full text-white hover:bg-green-400 duration-300 headline"
+          >
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Shop Now</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chat Section -->
+    <section id="chat">
+      <!-- Left Section -->
+      <div
+        class="space-y-10 px-5 grid md:grid-cols-2 items-center md:space-x-10 my-40 container mx-auto"
+      >
+        <div id="chat" class="shadow-2xl p-5 rounded-3xl headline">
+          <h1 class="font-bold font-serif text-3xl mb-5 dark:text-slate-200">
+            Chats
+          </h1>
+          <div class="space-y-3">
+            <div
+              class="flex items-center space-x-3 border rounded-lg p-3 hover:bg-yellow-200 duration-300"
+            >
+              <div
+                class="bg-green-500 h-10 w-10 flex justify-center items-center rounded-full text-white"
+              >
+                <i class="fa-solid fa-power-off"></i>
+              </div>
+              <div class="">
+                <h3 class="font-bold font-serif">#Tailwind Css</h3>
+                <p class="text-green-500 font-bold font-serif">
+                  Hsu Myat: Thanks For Everything
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex items-center space-x-3 border rounded-lg p-3 hover:bg-yellow-200 duration-300"
+            >
+              <div
+                class="bg-green-500 h-10 w-10 flex justify-center items-center rounded-full text-white"
+              >
+                <i class="fa-solid fa-power-off"></i>
+              </div>
+              <div class="">
+                <h3 class="font-bold font-serif">#Tailwind Css</h3>
+                <p class="text-green-500 font-bold font-serif">
+                  Hsu Myat: Thanks For Everything
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex items-center space-x-3 border rounded-lg p-3 hover:bg-yellow-200 duration-300"
+            >
+              <div
+                class="bg-green-500 h-10 w-10 flex justify-center items-center rounded-full text-white"
+              >
+                <i class="fa-solid fa-power-off"></i>
+              </div>
+              <div class="">
+                <h3 class="font-bold font-serif">#Tailwind Css</h3>
+                <p class="text-green-500 font-bold font-serif">
+                  Hsu Myat: Thanks For Everything
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Section -->
+        <div
+          class="text-center shadow-2xl p-5 bg-slate-200 dark:bg-slate-800 hover:bg-green-600 duration-500 rounded-lg headline"
+        >
+          <h1 class="text-3xl font-serif font-bold mb-4 dark:text-slate-200">
+            Create an invite only where you belong
+          </h1>
+          <p class="dark:text-slate-300">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!--  Contact Section-->
+    <section id="contact" class="bg-slate-400 dark:bg-slate-800 py-40 px-5">
+      <div
+        class="container mx-auto grid md:grid-cols-2 md:space-x-10 items-center"
+      >
+        <div
+          class="p-5 bg-slate-300 shadow-2xl rounded-2xl mx-auto md:mx-0 headline"
+        >
+          <h1 class="text-center font-serif font-bold text-3xl text-green-500">
+            Contact
+          </h1>
+          <div class="">
+            <div class="grid grid-cols-2 mt-10 space-x-3 mb-5">
+              <input
+                type="text"
+                placeholder="  Email"
+                class="border border-green-500 px-5 py-2 rounded-full cursor-pointer"
+              />
+              <input
+                type="number"
+                placeholder="Phone"
+                class="border border-green-500 px-5 py-2 rounded-full cursor-pointer"
+              />
+            </div>
+            <input
+              type="text"
+              name=""
+              id=""
+              class="rounded-full w-full py-2 mb-5"
+            />
+            <textarea
+              name=""
+              id=""
+              class="rounded-xl w-full py-5 mb-5"
+            ></textarea>
+
+            <button
+              class="border rounded-full bg-green-500 w-full py-3 active:scale-95 duration-300 text-white"
+            >
+              Send More
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-20 shadow-2xl rounded-lg text-center p-5 items-center">
+          <div class="headline">
+            <h1
+              class="text-4xl font-bold font-serif text-center mb-5 dark:text-slate-200"
+            >
+              Our NewSletter
+            </h1>
+            <p class="font-bold font-serif mb-5 dark:text-slate-300">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
+              qui eius iste voluptates, quaerat veniam repudiandae sed dicta
+              deleniti ipsa sint minus debitis modi veritatis provident placeat
+              saepe voluptas non!
+            </p>
+
+            <div class="grid grid-cols-3 gap-2">
+              <button
+                class="bg-slate-700 w-full py-2 rounded-full hover:bg-red-400 duration-200"
+              >
+                <i class="fa-brands fa-facebook" style="color: #74c0fc"></i>
+                <span class="text-white font-bold font-serif">Facebook</span>
+              </button>
+              <button
+                class="bg-slate-700 w-full py-2 rounded-full hover:bg-red-400 duration-200"
+              >
+                <i class="fa-brands fa-google" style="color: #ffd43b"></i>
+                <span class="text-white font-bold font-serif">Google</span>
+              </button>
+              <button
+                class="bg-slate-700 w-full py-2 rounded-full hover:bg-red-400 duration-200"
+              >
+                <i class="fa-brands fa-twitter" style="color: #74c0fc"></i>
+                <span class="text-white font-bold font-serif">Twitter</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Third Section -->
+    <div class="my-40 px-5">
+      <div class="container mx-auto grid md:grid-cols-3 gap-3">
+        <div
+          class="shadow-2xl p-6 border rounded-xl hover:bg-pink-300 duration-300 cursor-pointer headline"
+        >
+          <div class="flex space-x-3 items-center justify-center mb-5">
+            <i class="fa-solid fa-phone" style="color: #ffd43b"></i>
+            <h1 class="font-bold font-mono">+959882689334</h1>
+          </div>
+          <p class="font-serif font-bold max-w-lg text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+            provident natus, perferendis eligendi molestias, unde dolor
+          </p>
+        </div>
+        <div
+          class="shadow-2xl p-6 border rounded-xl hover:bg-pink-300 duration-300 cursor-pointer headline"
+        >
+          <div class="flex space-x-3 items-center justify-center mb-5">
+            <i class="fa-solid fa-envelope" style="color: #98ca0d"></i>
+            <h1 class="font-bold font-serif">zarninaing423@gmail.com</h1>
+          </div>
+          <p class="font-serif font-bold max-w-lg text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+            provident natus, perferendis eligendi molestias, unde dolor
+          </p>
+        </div>
+        <div
+          class="shadow-2xl p-6 border rounded-xl hover:bg-pink-300 duration-300 cursor-pointer headline"
+        >
+          <div class="flex space-x-3 items-center justify-center mb-5">
+            <i class="fa-solid fa-location-dot" style="color: #74c0fc"></i>
+            <h1 class="font-bold font-serif">Location</h1>
+          </div>
+          <p class="font-serif font-bold max-w-lg text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+            provident natus, perferendis eligendi molestias, unde dolor
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Picture Section -->
+    <section id="device" class="bg-slate-200 dark:bg-slate-800 py-40">
+      <div class="container mx-auto text-center space-y-20 md:px-0 px-5">
+        <div class="mb-10">
+          <h1
+            class="font-bold font-serif text-3xl md:max-w-full max-w-sm mx-auto headline"
+          >
+            RELIABLE TECH FOR STAYING CLOSE
+          </h1>
+          <p class="font-bold font-serif md:max-w-lg mt-3 mx-auto headline">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
+            atque, quis minima sit, dolorem ducimus perspiciatis, illo enim
+            temporibus provident assumenda ea dignissimos.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <img
+            src="/assets/device.svg"
+            alt=""
+            class="mx-auto md:max-w-2xl headline"
+          />
+        </div>
+
+        <div class="">
+          <h1
+            class="font-bold font-serif text-3xl md:max-w-full max-w-sm mx-auto mb-10 headline"
+          >
+            Ready To Start Your Journey
+          </h1>
+          <button
+            class="bg-green-500 px-6 py-3 rounded-full headline text-white active:scale-90 duration-300"
+          >
+            <i class="fa-solid fa-download"></i>
+            <span>Download Now</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-slate-300 dark:bg-slate-700 py-20">
+      <div
+        class="container mx-auto gap-10 grid grid-cols-2 md:grid-cols-5 px-5 mb-10"
+      >
+        <div class="col-span-2 text-center md:col-span-1">
+          <h1 class="text-4xl font-bold font-serif headline">
+            Image In Places
+          </h1>
+        </div>
+
+        <div class="headline">
+          <h1 class="font-bold font-serif mb-1">Products</h1>
+          <ul class="space-y-1">
+            <li>Download</li>
+            <li>Status</li>
+          </ul>
+        </div>
+        <div class="headline">
+          <h1 class="font-bold font-serif mb-1">Products</h1>
+          <ul class="space-y-1">
+            <li>Download</li>
+            <li>Status</li>
+            <li>About</li>
+            <li>Job</li>
+          </ul>
+        </div>
+        <div class="headline">
+          <h1 class="font-bold font-serif mb-1">Products</h1>
+          <ul class="space-y-1">
+            <li>Developer</li>
+            <li>Web Design</li>
+            <li>Backend</li>
+            <li>Figma</li>
+            <li>Web App</li>
+          </ul>
+        </div>
+        <div class="headline">
+          <h1 class="font-bold font-serif mb-1">Products</h1>
+          <ul class="space-y-1">
+            <li>Mas Oc</li>
+            <li>Window</li>
+            <li>Brew</li>
+            <li>Linux</li>
+            <li>Composer</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- HR Line -->
+      <div class="container mx-auto headline">
+        <hr />
+      </div>
+
+      <div class="container mx-auto py-5 px-5">
+        <div class="flex justify-between items-center">
+          <h1
+            class="text-gray-700 text-3xl font-serif font-bold headline dark:text-red-400"
+          >
+            Vanilla
+          </h1>
+
+          <button
+            class="border headline px-4 py-2 rounded-full items-center text-white font-bold bg-green-400"
+          >
+            <i class="fa-solid fa-right-to-bracket" style="color: #005df3"></i>
+
+            Sign In
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      window.addEventListener("load", () => {
+        document.querySelector(".loading").style.display = "none";
+      });
+    </script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"
+      integrity="sha512-fHXRw0CXruAoINU11+hgqYvY/PcsOWzmj0QmcSOtjlJcqITbPyypc8cYpidjPurWpCnlB8VKfRwx6PIpASCUkQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
